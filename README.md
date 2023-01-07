@@ -11,6 +11,9 @@
 * Add tags to every imported note
 
 ## Usage
+* Connect your Tolino to your Mac/PC via USB cable
+* Copy the path to the root of your mounted Tolino (this is the place where you shoud see a notes.txt file).
+Mac example: /Volumes/tolino, Windows example: W:\
 * Open settings and set
 	* local drive where Tolino is mounted
 	* the Obsidian vault location where new notes should get imported
@@ -19,3 +22,6 @@
 
 ## Current restrictions
 * Only supports Tolinos with language set to German
+
+## Additional info
+* Tested on Mac OS and Windows
