@@ -1,11 +1,11 @@
 {
-	"id": "obsidian-sample-plugin",
-	"name": "Sample Plugin",
+	"id": "obsidian-tolino-notes-import",
+	"name": "Tolino notes Import Plugin",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "This is a sample plugin for Obsidian. This plugin demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "This is a plugin for Obsidian to import notes from a Tolino E-Reader.",
+	"author": "Jürgen Breitenbaumer",
+	"authorUrl": "hhttps://github.com/juergenbr",
+	"fundingUrl": "https://www.buymeacoffee.com/jbat",
 	"isDesktopOnly": false
 }
