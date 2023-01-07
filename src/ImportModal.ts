@@ -2,7 +2,7 @@ import { App, Modal, normalizePath } from "obsidian";
 import * as os from "os";
 
 import NoteCreationService from "./NoteCreationService";
-import PluginSettings from "./PluginSettings";
+import PluginSettings from "./TolinoNoteImportPluginSettings";
 import NoteParser from "./NoteParser";
 import TolinoNoteModel from "./TolinoNoteModel";
 import { normalizeFilename, checkAndCreateFolder } from "./FileUtils";
