@@ -6,18 +6,18 @@ import {
 } from "obsidian";
 
 import ImportModal from "src/ImportModal";
-import PluginSettings from "src/PluginSettings";
+import TolinoNoteImportPluginSettings from "src/TolinoNoteImportPluginSettings";
 
 // Remember to rename these classes and interfaces!
 
-const DEFAULT_SETTINGS: PluginSettings = {
+const DEFAULT_SETTINGS: TolinoNoteImportPluginSettings = {
 	tolinoDriveSetting: "/Volumes/tolino",
 	notesPathSetting: "/",
 	tagsSetting: "#readinglist/read"
 };
 
-export default class MyPlugin extends Plugin {
-	settings: PluginSettings;
+export default class TolinoNoteImportPlugin extends Plugin {
+	settings: TolinoNoteImportPluginSettings;
 
 	async onload() {
 		await this.loadSettings();
@@ -60,9 +60,9 @@ export default class MyPlugin extends Plugin {
 }
 
 class TolinoNotesImportSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+	plugin: TolinoNoteImportPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app: App, plugin: TolinoNoteImportPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
