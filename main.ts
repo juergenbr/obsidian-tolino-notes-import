@@ -22,10 +22,6 @@ export default class TolinoNoteImportPlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
-		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
-		const statusBarItemEl = this.addStatusBarItem();
-		statusBarItemEl.setText("Tolino notes importer loaded!");
-
 		// This adds a simple command that can be triggered anywhere
 		this.addCommand({
 			id: "load-notes",

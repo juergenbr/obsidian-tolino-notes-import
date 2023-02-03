@@ -2,16 +2,33 @@ import TolinoNoteModel from "./TolinoNoteModel";
 import * as os from "os";
 
 export default class NoteParser {
-	static parseNoteFile(file: string, language: string): TolinoNoteModel[] {
+	static parseNoteFile(file: string): TolinoNoteModel[] {
 		// init result array
 		const tolinoNotes: TolinoNoteModel[] = [];
 		const lines = file.split("-----------------------------------");
 		for (const line of lines) {
-			if (language === "de") {
-				tolinoNotes.push(this.parseGermanNote(line));
-			}
+				tolinoNotes.push(this.parseNote(line));
 		}
 		return tolinoNotes;
+	}
+
+	static parseNote(note: string): TolinoNoteModel {
+		const language = NoteParser.checkLanguage(note);
+		if(language === "de"){
+			return NoteParser.parseGermanNote(note);
+		}
+		else{
+			return new TolinoNoteModel();
+		}
+	}
+
+	static checkLanguage(note: string): string {
+		if (note.includes("Markierung auf Seite") || note.includes("Lesezeichen auf Seite") || note.includes("Notiz auf Seite")) {
+			return "de";
+		}
+		else {
+			return "en";
+		}
 	}
 
 	static parseGermanNote(note: string): TolinoNoteModel {

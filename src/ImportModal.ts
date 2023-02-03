@@ -5,7 +5,7 @@ import NoteCreationService from "./NoteCreationService";
 import PluginSettings from "./TolinoNoteImportPluginSettings";
 import NoteParser from "./NoteParser";
 import TolinoNoteModel from "./TolinoNoteModel";
-import { normalizeFilename, checkAndCreateFolder } from "./FileUtils";
+import { checkAndCreateFolder } from "./FileUtils";
 import * as _path from "path";
 
 export default class ImportModal extends Modal {
@@ -20,7 +20,7 @@ export default class ImportModal extends Modal {
 		super(app);
 		this.noteCreationService = new NoteCreationService(app);
 		this.settings = settings;
-		console.log(this.settings.tolinoDriveSetting);
+		console.log("Parsing notes now...")
 		this.tolinoPath = this.settings.tolinoDriveSetting;
 		this.notesPath = this.settings.notesPathSetting;
 		this.noteTags = this.settings.tagsSetting;
@@ -28,8 +28,7 @@ export default class ImportModal extends Modal {
 
 	onOpen() {
 		const file = this.noteCreationService.readFile(this.tolinoPath);
-		const tolinoNotes = NoteParser.parseNoteFile(file, "de");
-
+		const tolinoNotes = NoteParser.parseNoteFile(file);
 		// create a new array containing one element for each book
 		const uniqueBooks = this.removeDuplicates(tolinoNotes);
 		// create new notes in vault
@@ -68,8 +67,7 @@ export default class ImportModal extends Modal {
 	async writeFile(fileName: string, content: string): Promise<void> {
 		let filePath: string;
 		if (fileName !== null && fileName !== undefined) {
-			console.log("Writing file " + fileName);
-			fileName = normalizeFilename(fileName) + ".md";
+			fileName = normalizePath(fileName) + ".md";
 			await checkAndCreateFolder(this.app.vault, this.notesPath);
 
 			if (this.notesPath) {
