@@ -1,15 +1,13 @@
 import { App, Modal, normalizePath } from "obsidian";
 import * as os from "os";
-
-import NoteCreationService from "./NoteCreationService";
 import PluginSettings from "./TolinoNoteImportPluginSettings";
 import NoteParser from "./NoteParser";
 import TolinoNoteModel from "./TolinoNoteModel";
 import { checkAndCreateFolder } from "./FileUtils";
 import * as _path from "path";
+import * as fs from 'fs';
 
 export default class ImportModal extends Modal {
-	noteCreationService: NoteCreationService;
 	tolinoPath: string;
 	notesPath: string;
 	noteTags : string
@@ -18,7 +16,6 @@ export default class ImportModal extends Modal {
 
 	constructor(app: App, settings: PluginSettings) {
 		super(app);
-		this.noteCreationService = new NoteCreationService(app);
 		this.settings = settings;
 		console.log("Parsing notes now...")
 		this.tolinoPath = this.settings.tolinoDriveSetting;
@@ -27,7 +24,7 @@ export default class ImportModal extends Modal {
 	}
 
 	onOpen() {
-		const file = this.noteCreationService.readFile(this.tolinoPath);
+		const file = this.readFile(this.tolinoPath);
 		const tolinoNotes = NoteParser.parseNoteFile(file);
 		// create a new array containing one element for each book
 		const uniqueBooks = this.removeDuplicates(tolinoNotes);
@@ -85,5 +82,16 @@ export default class ImportModal extends Modal {
 	onClose() {
 		const {contentEl} = this;
 		contentEl.empty();
+	}
+
+	//method to read a file from a provides path using NoteParser
+	readFile(path: string) {
+		console.error(path)
+		let osPathString = '';
+		//check if path is a valid path
+		osPathString = _path.join(path, 'notes.txt');
+		const file = fs.readFileSync(osPathString, 'utf8')
+		//replace unicode character U+00a0 with a space
+		return file.replace(/\u00a0/g, ' ');
 	}
 }
