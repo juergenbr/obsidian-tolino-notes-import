@@ -1,7 +1,7 @@
 {
 	"id": "tolino-notes-import",
 	"name": "Tolino notes Importer",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"minAppVersion": "1.1.9",
 	"description": "This is a plugin for Obsidian to import notes from a Tolino E-Reader.",
 	"author": "Jürgen Breitenbaumer",
