@@ -10,7 +10,7 @@ import * as fs from 'fs';
 export default class ImportModal extends Modal {
 	tolinoPath: string;
 	notesPath: string;
-	noteTags : string
+	noteTags: string
 	settings: PluginSettings;
 	noteParser: NoteParser;
 
@@ -33,7 +33,7 @@ export default class ImportModal extends Modal {
 			// create book files
 			this.writeFile(note.bookName, note.noteText);
 		});
-		const {contentEl} = this;
+		const { contentEl } = this;
 		contentEl.setText('Tolino Notes loaded!');
 	}
 
@@ -44,15 +44,15 @@ export default class ImportModal extends Modal {
 		notes.forEach((note) => {
 			if (!uniqueTitles.has(note.bookName)) {
 				uniqueTitles.add(note.bookName);
-				const newNote : TolinoNoteModel = new TolinoNoteModel();
+				const newNote: TolinoNoteModel = new TolinoNoteModel();
 				newNote.bookName = note.bookName;
-				newNote.noteText = "Tags: " + this.noteTags + os.EOL + os.EOL +  "---" + os.EOL;
+				newNote.noteText = "Tags: " + this.noteTags + os.EOL + os.EOL + "---" + os.EOL;
 				newNote.noteText += "**Seite " + note.page + "**" + ", Erstellt am " + note.date + " " + note.time + os.EOL + note.noteText + os.EOL + "---" + os.EOL;
 				uniqueBooks.push(newNote);
 			}
-			else{
+			else {
 				const bookNote = uniqueBooks.find((existingNote) => existingNote.bookName === note.bookName)
-				if(bookNote){
+				if (bookNote) {
 					bookNote.noteText += "**Seite " + note.page + "**" + ", Erstellt am " + note.date + " " + note.time + os.EOL + note.noteText + os.EOL + "---" + os.EOL;
 					uniqueBooks.push(bookNote)
 				}
@@ -63,6 +63,7 @@ export default class ImportModal extends Modal {
 
 	async writeFile(fileName: string, content: string): Promise<void> {
 		let filePath: string;
+
 		if (fileName !== null && fileName !== undefined) {
 			fileName = normalizePath(fileName) + ".md";
 			await checkAndCreateFolder(this.app.vault, this.notesPath);
@@ -74,19 +75,19 @@ export default class ImportModal extends Modal {
 					_path.join(this.app.vault.getRoot().path, fileName)
 				);
 			}
-
-			await this.app.vault.create(filePath, content);
+			console.info("Writing file: " + filePath);
+			await this.app.vault.adapter.write(filePath, content);
 		}
 	}
 
 	onClose() {
-		const {contentEl} = this;
+		const { contentEl } = this;
 		contentEl.empty();
 	}
 
 	//method to read a file from a provides path using NoteParser
 	readFile(path: string) {
-		console.error(path)
+		console.info(path)
 		let osPathString = '';
 		//check if path is a valid path
 		osPathString = _path.join(path, 'notes.txt');
