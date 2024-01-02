@@ -9,6 +9,7 @@
 * Summorts bookmarks, notes and text markings
 * Import notes into a specific folder
 * Add tags to every imported note
+* Version 1.1.0: support for english notes and german/english mixed-language note files
 
 ## Usage
 * Connect your Tolino to your Mac/PC via USB cable
@@ -21,7 +22,7 @@ Mac example: /Volumes/tolino, Windows example: W:\
 * Open the command palette and execute **Tolino notes import Plugin: Load Tolino Notes** 
 
 ## Current restrictions
-* Only supports Tolinos with language set to German
+* ~~Only supports Tolinos with language set to German~~
 
 ## Additional info
 * Tested on Mac OS and Windows
