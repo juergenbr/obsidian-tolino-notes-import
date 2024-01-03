@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-tolino-notes-import",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "A plugin to import Tolino E-Reader notes into Obsidian (https://obsidian.md)",
 	"main": "main.js",
 	"scripts": {

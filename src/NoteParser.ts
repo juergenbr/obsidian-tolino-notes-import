@@ -168,7 +168,7 @@ export default class NoteParser {
 			const matchArray = line.split(regex);
 			// if the array has more than 2 elements, join the array from the second element on
 			if (matchArray.length > 2) {
-				tolinoNote.noteText = matchArray.slice(1).join(":");
+				tolinoNote.noteText = matchArray.slice(1).join(": ");
 			}
 			else
 				tolinoNote.noteText = line.split(regex)[1];
@@ -194,7 +194,7 @@ export default class NoteParser {
 			const matchArray = line.split(regex);
 			// if the array has more than 2 elements, join the array from the second element on
 			if (matchArray.length > 2) {
-				tolinoNote.noteText = matchArray.slice(1).join(":");
+				tolinoNote.noteText = matchArray.slice(1).join(": ");
 			}
 			else
 				tolinoNote.noteText = line.split(regex)[1];
