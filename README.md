@@ -21,6 +21,12 @@ Mac example: /Volumes/tolino, Windows example: W:\
 	* list of tags you want to apply to imported notes
 * Open the command palette and execute **Tolino notes import Plugin: Load Tolino Notes** 
 
+## Known issues
+* (MacOS) Some people reported that their Tolino can not be mounted automatically. 
+Currently there is not support for accessing the notes file via the Android File Transfare tool due to a lack of test hardware.
+The issue is also mentioned here:
+https://mytolino.de/faq/ich-habe-probleme-beim-verbinden-des-tolino-ereaders-mit-computer-was-kann-ich-tun/
+
 ## Current restrictions
 * ~~Only supports Tolinos with language set to German~~
 
